@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>athalla -mission impossible</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Baloo+Chettan+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/overrides.css">
+</head>
+<body>
+  <main id="app" class="app-shell">
+    <section id="home-screen" class="screen home-screen">
+      <div class="home-copy">
+        <p class="kicker">ഒരു കേരളീയ അന്വേഷണ ദൗത്യം</p>
+        <h1>ATHALLA! <span>😤</span></h1>
+        <p class="app-name">athalla -mission impossible</p>
+        <p class="tagline">അമ്മ പറഞ്ഞത് ഇതല്ല!</p>
+        <p class="malayalam-subtitle">ശരിയായ സാധനം കണ്ടെത്തൂ.</p>
+        <div class="home-actions"><button id="start-button" class="primary-button">START</button><button id="how-button" class="quiet-button">എങ്ങനെ കളിക്കാം?</button></div>
+        <p id="home-error" class="home-error" role="alert"></p>
+        <button id="home-sound" class="sound-button" aria-pressed="false">🔇 ശബ്ദം ഓഫ്</button>
+      </div>
+      <div class="home-room room-art"><div class="window"></div><div class="table"></div><div class="shelf"></div><div class="floor"></div><div id="home-amma" class="amma"></div></div>
+    </section>
+
+    <section id="how-screen" class="screen how-screen hidden">
+      <button class="back-button" data-screen="home-screen">← തിരികെ</button>
+      <div class="how-paper"><p class="kicker">നിയമങ്ങൾ</p><h2>അമ്മ പറയുന്നത് കേൾക്കണം.</h2><ol><li>അമ്മ പറയുന്നത് കേൾക്കുക.</li><li>പറഞ്ഞ സാധനം കണ്ടെത്തുക.</li><li>സാധനത്തിൽ ക്ലിക്ക് ചെയ്യുക.</li><li>മനസ്സിലായില്ലെങ്കിൽ വീണ്ടും ചോദിക്കുക.</li><li>അമ്മയുടെ ക്ഷമ തീർന്നാൽ അമ്മ തന്നെ എടുത്തോളും!</li></ol><button class="primary-button" data-screen="home-screen">മനസ്സിലായി</button></div>
+    </section>
+
+    <section id="game-screen" class="screen game-screen hidden">
+      <header class="game-header"><div><span class="eyebrow">ATHALLA! / ദൗത്യം</span><strong id="round-label">01 / 06</strong></div><div class="score-readout"><span>സ്കോർ</span><b id="score-label">0</b></div><button id="game-sound" class="icon-button" aria-label="ശബ്ദം മാറ്റുക" aria-pressed="false">🔇</button><button id="restart-button" class="icon-button" aria-label="വീണ്ടും തുടങ്ങുക">↻</button><button id="home-button" class="icon-button" aria-label="വീട്ടിലേക്ക് മടങ്ങുക">⌂</button></header>
+      <div class="game-layout">
+        <div class="room-frame" id="room-frame"><div class="room-art"><div class="window"></div><div class="wall-clock">12</div><div class="table"></div><div class="shelf"></div><div class="chair"></div><div class="floor"></div><div id="scene-objects" class="scene-objects"></div><div id="carried-object" class="carried-object hidden"></div><div id="game-amma" class="amma"></div><div id="speech-bubble" class="speech-bubble">ആ സാധനം ഒന്ന് എടുത്തോണ്ട് വാ.</div></div><div class="room-caption">അമ്മയുടെ മുറി · സൂക്ഷിച്ച് നോക്കൂ</div></div>
+        <aside class="control-panel"><div class="panel-top"><span id="status-label">അമ്മ നോക്കുന്നുണ്ട്…</span><span id="wrong-label">0 / 3 തെറ്റുകൾ</span></div><div class="meter-label"><span>അമ്മയുടെ ദേഷ്യം</span><b id="meter-value">0%</b></div><div class="meter"><span id="meter-fill"></span></div><div id="user-reply" class="user-reply">ഇനി എന്താണ് വേണ്ടത്?</div><button id="hint-button" class="hint-button">💬 ഒന്നുകൂടി പറയാമോ?</button><div id="feedback" class="feedback" role="status" aria-live="polite"></div><button id="next-button" class="primary-button full-button hidden">അടുത്തത് →</button></aside>
+      </div>
+    </section>
+
+    <section id="result-screen" class="screen result-screen hidden"><div class="result-card"><p class="kicker">ദൗത്യം പൂർത്തിയായി</p><h2 id="result-rank">അമ്മ തന്നെ വന്നെടുത്തു 💀</h2><div class="big-score"><span>അവസാന സ്കോർ</span><b id="final-score">0</b></div><div class="result-stats"><div><b id="result-solved">0</b><span>ശരിയായ സാധനങ്ങൾ</span></div><div><b id="result-takeovers">0</b><span>അമ്മയുടെ കൈയേറ്റങ്ങൾ</span></div><div><b id="result-wrong">0</b><span>തെറ്റായ തിരഞ്ഞെടുപ്പുകൾ</span></div></div><p class="result-line">അമ്മയുടെ വിധി അന്തിമമായിരിക്കും.</p><button id="again-button" class="primary-button">വീണ്ടും തുടങ്ങാം</button></div></section>
+  </main>
+  <script src="/static/js/script.js"></script>
+  <script src="/static/js/amma.js"></script>
+</body>
+</html>
